@@ -2,8 +2,8 @@
 name: open-meteo-skill
 description: |
   전세계 날씨 API Open-Meteo 스킬. 무료 오픈소스 날씨 API로 16일 예보, 80년 역사 데이터, 대기질, 해양 날씨 등 제공.
-  사용 시점: (1) 날씨 예보 조회 (2) 과거 날씨 데이터 조회 (3) 대기질/미세먼지 조회 (4) 해양 날씨/파도 정보 (5) 위치 좌표 검색 (6) 고도 정보 조회
-  키워드: 날씨, weather, 기온, 강수량, 습도, 풍속, 미세먼지, PM2.5, 파도, 일출, 일몰, geocoding
+  사용 시점: (1) 날씨 예보 조회 (2) 과거 날씨 데이터 조회 (3) 대기질/미세먼지 조회 (4) 해양 날씨/파도 정보 (5) 위치 좌표 검색 (6) 고도 정보 조회 (7) Flutter 앱에서 날씨 기능 구현 (8) 시간대별 날씨 표시 (2시간/4시간 단위) (9) 캐시 기반 실시간 날씨 아이콘 표시
+  키워드: 날씨, weather, 기온, 강수량, 습도, 풍속, 미세먼지, PM2.5, 파도, 일출, 일몰, geocoding, Flutter, 캐시, FutureBuilder, WMO 코드, 날씨 아이콘
 ---
 
 # Open-Meteo API 스킬
@@ -45,6 +45,17 @@ curl "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780
 - **API 상세 명세**: [references/api-spec.md](references/api-spec.md)
 - **MCP 서버 가이드**: [references/mcp-guide.md](references/mcp-guide.md)
 - **날씨 변수 목록**: [references/weather-variables.md](references/weather-variables.md)
+- **Flutter 날씨 구현 가이드**: [references/flutter-weather-guide.md](references/flutter-weather-guide.md)
+
+### Flutter 날씨 구현 가이드 → [flutter-weather-guide.md](references/flutter-weather-guide.md)
+
+Flutter 앱에서 Open-Meteo API를 활용한 날씨 기능 구현 전체 가이드를 다룹니다.
+**시간대별 날씨 표시 기법**(오늘은 2시간 단위, 내일~7일은 4시간 단위로 필터링하는
+`getTodayWeather()`, `getDayWeather()` 메서드)과 **캐시 기반 실시간 날씨 아이콘 표시**
+(FutureBuilder 패턴으로 `WeatherService.getCurrentWeather()`를 호출하여 홈 화면 퀵메뉴에
+동적 아이콘 표시)를 상세히 설명합니다. WMO 날씨 코드를 Flutter Icons로 매핑하는 로직,
+낮/밤 판단(`isDay` getter), 아이콘 색상 매핑, 30분 FileCache 설정, API 파라미터 구성 등
+실제 구현에 필요한 핵심 코드와 체크리스트를 포함합니다.
 
 ## 테스트 스크립트
 
