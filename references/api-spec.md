@@ -249,7 +249,7 @@ GET https://geocoding-api.open-meteo.com/v1/search
 | `name` | string | 검색할 지명 (최소 2자) |
 | `count` | int | 결과 수 (기본: 10, 최대: 100) |
 | `language` | string | 언어 코드 (en, ko, ja 등) |
-| `countryCode` | string | ISO-3166-1 국가 코드 필터 |
+| `country` | string | ISO-3166-1 alpha-2 국가 코드 필터 (예: `sg`, `ph`, `us`). **주의: `countryCode`가 아닌 `country`를 사용해야 함** |
 
 ### 요청 예제
 

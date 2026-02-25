@@ -264,7 +264,7 @@ const GeocodingParamsSchema = z.object({
   name: z.string().min(2),
   count: z.number().min(1).max(100).default(10),
   language: z.string().default('en'),
-  countryCode: z.string().optional()  // ISO-3166-1 국가 코드
+  countryCode: z.string().optional()  // MCP 서버 내부 명칭. 실제 Open-Meteo API에서는 'country' 파라미터로 전송됨
 });
 ```
 
